@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 # 待修改为读取当日的信息
 @st.cache_data
 def show_statistics():
@@ -62,5 +63,7 @@ def show_statistics():
     merged = pd.merge(in_merge_10, out_merge_10, on='TurbID', how='outer')
     merged=merged.sort_values(by='YD15', ascending=False).reset_index(drop=True)
     merged.index=merged.index+1
+    merged.rename(columns={'TurbID': '风机号', 'YD15': '当前YD15','Pred_YD15':'下一时刻预测YD15'}, inplace=True)
+    merged['风机号']=merged['风机号'].apply(lambda x: np.int64(round(x)))
     return merged
 
