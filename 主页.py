@@ -3,8 +3,10 @@ import pandas as pd
 from util.statistics_and_rank import show_statistics
 from util.produce_power_statistics import yes,today
 
+# 标题
 st.markdown("# Main Page")
 
+# 列
 col1,col2=st.columns(2)
 with col1:
     st.markdown('## 当前功率排名及预测')
