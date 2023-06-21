@@ -19,7 +19,7 @@ file_options = [
     '9号风机',
     '10号风机',
 ]
-col1, col2 = st.columns(2)
+col1, col2 = st.columns([2,1])
 with col2:
     with st.expander("参数调整", expanded=True):
         # Initialize session state

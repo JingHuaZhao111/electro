@@ -19,7 +19,7 @@ file_options = [
     '9号风机',
     '10号风机',
 ]
-col1,col2=st.columns(2)
+col1,col2=st.columns([3,1])
 with col2:
     with st.expander("",expanded=True):
         selected_file = st.selectbox('选择风机', file_options)
