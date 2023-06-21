@@ -16,7 +16,9 @@ st.markdown("# Main Page")
 
 # 获取当前时间
 current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 next_update = next_update_time()
+
 st.markdown(
 
     '当前时间：{}</div>'.format(current_time),
