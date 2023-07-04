@@ -7,10 +7,23 @@ from util.time_restart import next_update_time
 from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
 import time
+from util.today_df import get_today_df
 st.set_page_config(
         layout="wide",
     )
-
+    
+file_options = [
+    '1号风机',
+    '2号风机',
+    '3号风机',
+    '4号风机',
+    '5号风机',
+    '6号风机',
+    '7号风机',
+    '8号风机',
+    '9号风机',
+    '10号风机',
+]
 # 标题
 st.markdown("# Main Page")
 
@@ -24,52 +37,28 @@ with col1:
 with col2:
     # 获取当前时间
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-
     next_update = next_update_time()
-
     st.markdown(
-
-        '当前时间：{}</div>'.format(current_time),
+        '<div style="text-align: right;">当前时间：{}</div>'.format(current_time),
         unsafe_allow_html=True
     )
     st.markdown(
-        '下一次更新的时间：{}</div>'.format(next_update.strftime("%Y-%m-%d %H:%M:%S")),
+        '<div style="text-align: right;">下一次更新的时间：{}</div>'.format(next_update.strftime("%Y-%m-%d %H:%M:%S")),
         unsafe_allow_html=True
     )
+    selected_file = st.selectbox('选择风机', file_options)
+    values=get_today_df(selected_file[0])
+    st.line_chart(values,x="DATATIME",y='YD15')
+    
+    
+col3,col4=st.columns(spec = 2, gap = "large")
+with col3:
     df = yes()
     st.markdown('## 昨日各风机发电量')
     st.bar_chart(df.set_index('ID')[['昨日发电量']])
-df=today()
-st.markdown('## 今日截至目前各风机发电量')
-st.bar_chart(df.set_index('ID')[['今日目前发电量']])
+with col4:
+    df=today()
+    st.markdown('## 今日截至目前各风机发电量')
+    st.bar_chart(df.set_index('ID')[['今日目前发电量']])
 
-
-
-
-# # 创建一个容器
-# container = st.container()
-
-# # 自定义容器的边框样式
-# container_style = '''
-#     <style>
-#     .st-cn {
-#         border: 1px solid red;
-#         border-radius: 10px;
-#         padding: 20px;
-#     }
-#     </style>
-# '''
-
-# # 在容器中添加其他组件
-# with container:
-#     st.title("这是一个容器示例")
-#     st.write("这是容器中的内容。")
-#     st.button("点击我")
-
-# # 在容器外部添加其他组件
-# st.header("容器外部的内容")
-# st.write("这是容器外部的内容。")
-
-# # 渲染自定义样式
-# st.markdown(container_style, unsafe_allow_html=True)
 

@@ -15,7 +15,7 @@ for csv_path in csv_paths:
     file_name_without_extension = os.path.splitext(file_name)[0]  # 去除扩展名
     turb_id = file_name_without_extension.split("/")[-1]  # 提取数字部分
     # 获取昨天0点的时间
-    yesterday = datetime.now() - timedelta(days=5)
+    yesterday = datetime.now()
     start_time = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
     
     # 生成15分钟递增的时间戳

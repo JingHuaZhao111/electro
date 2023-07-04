@@ -26,17 +26,14 @@ def today_power(df):
     now = datetime.datetime.now()
     start_date = datetime.datetime(now.year, now.month, now.day)  # 今天的起始日期
     end_date = now  # 当前日期和时间
-
     # 将DATATIME列解析为日期时间类型
     df['DATATIME'] = pd.to_datetime(df['DATATIME'])
-
     # 筛选出指定日期范围内的数据
     filtered_df = df[(df['DATATIME'] >= start_date) & (df['DATATIME'] <= end_date)]
-
     # 计算YD15列的和
     yd15_sum = filtered_df['YD15'].sum() * 0.25
-
     return yd15_sum
+
 @st.cache_data
 # 计算发电总量
 def yes():
