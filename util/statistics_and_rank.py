@@ -1,9 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+from datetime import datetime, timedelta
+from util.time_last import last_update_time
 # 待修改为读取当日的信息
-@st.cache_data
+@st.cache_data()
 def show_statistics():
+    last_time=last_update_time()- timedelta(seconds=10)
     in_data_01=pd.read_csv('./data/1.csv')
     out_data_01=pd.read_csv('./pred/0001out.csv')
     in_row_01=in_data_01.iloc[2]

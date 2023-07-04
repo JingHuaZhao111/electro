@@ -6,7 +6,7 @@ from datetime import datetime
 from util.time_restart import next_update_time
 from streamlit_elements import elements, mui, html
 from streamlit_elements import dashboard
-
+import time
 st.set_page_config(
         layout="wide",
     )
@@ -16,6 +16,7 @@ st.markdown("# Main Page")
 
 # 列
 col1,col2=st.columns(spec = 2, gap = "large")
+
 with col1:
     st.markdown('## 当前功率排名及预测')
     st.table(show_statistics())
@@ -38,10 +39,6 @@ with col2:
     df = yes()
     st.markdown('## 昨日各风机发电量')
     st.bar_chart(df.set_index('ID')[['昨日发电量']])
-
-
-
-
 df=today()
 st.markdown('## 今日截至目前各风机发电量')
 st.bar_chart(df.set_index('ID')[['今日目前发电量']])
