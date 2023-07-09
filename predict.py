@@ -6,6 +6,7 @@ from env.data_loader import TSDataset, TSPredDataset
 from env.model import MultiTaskLSTM, MultiTaskMSELoss
 from env.utils import EarlyStopping, calc_acc, to_unix_time, from_unix_time
 import warnings
+from datetime import datetime
 warnings.filterwarnings('ignore')
 
 
@@ -36,11 +37,37 @@ def forecast(df, turbine_id, out_file):
     result = pd.DataFrame({'DATATIME':ts_y, 'ROUND(A.POWER,0)':apower, 'YD15':yd15})
     result['TurbID'] = turbine_id
     result = result[['TurbID', 'DATATIME', 'ROUND(A.POWER,0)', 'YD15']]
-    result.to_csv(out_file, index=False)
+    if os.path.isfile(out_file):
+        result.to_csv(out_file,mode='a',header=False,index=False)
+    else:
+        result.to_csv(out_file,index=False)
     
 
+# if __name__=="__main__":
+#     while(True):
+#         if datetime.now().hour==5 :
+#             files = os.listdir('infile')
+#             if not os.path.exists('pred'):
+#                 os.mkdir('pred')
+#             # 第一步，完成数据格式统一
+#             for f in files:
+#                 if '.csv' not in f:
+#                     continue
+#                 print(f)
+#                 # 获取文件路径
+#                 data_file = os.path.join('infile', f)
+#                 print(data_file)
+#                 out_file = os.path.join('pred', f[:4] + 'out.csv')
+#                 df = pd.read_csv(data_file,
+#                                 parse_dates=['DATATIME'],
+#                                 infer_datetime_format=True,
+#                                 dayfirst=True)
+#                 turbine_id = df.TurbID[0]
+#                 # 预测结果
+#                 forecast(df, turbine_id, out_file)
 if __name__=="__main__":
-    files = os.listdir('infile')
+
+    files = os.listdir('data')
     if not os.path.exists('pred'):
         os.mkdir('pred')
     # 第一步，完成数据格式统一
@@ -49,9 +76,12 @@ if __name__=="__main__":
             continue
         print(f)
         # 获取文件路径
-        data_file = os.path.join('infile', f)
+        data_file = os.path.join('data', f)
         print(data_file)
-        out_file = os.path.join('pred', f[:4] + 'out.csv')
+        if f[:2]=='10':
+            out_file = os.path.join('pred', f[:2] + '.csv')
+        else:
+            out_file = os.path.join('pred', f[:1] + '.csv')
         df = pd.read_csv(data_file,
                         parse_dates=['DATATIME'],
                         infer_datetime_format=True,
