@@ -130,7 +130,6 @@ if button_clicked2:
             max_len=max(len(df),len(df_real))
             merge=pd.merge(df,df_real,on='DATATIME',how='outer')
             merge=merge.dropna(how='any')
-            print(merge)
             # 创建两个空的占位符
             chart_placeholder1 = st.empty()
             chart_placeholder2 = st.empty()

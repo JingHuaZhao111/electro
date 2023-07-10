@@ -1,9 +1,5 @@
 import streamlit as st
 import pandas as pd
-import pytz
-import os
-
-from tzlocal import get_localzone
 from util.statistics_and_rank import show_statistics
 from util.produce_power_statistics import yes,today
 from datetime import datetime
@@ -17,7 +13,7 @@ st.set_page_config(
         layout="wide",
         page_icon="⚡",
     )
-os.environ['TZ'] = 'Asia/Shanghai'
+
 add_logo("picture/wind-turbine-2244222_640.jpg", height=175)
 with st.sidebar:
     st.title("👷🏿‍♂️煤球发电")  
