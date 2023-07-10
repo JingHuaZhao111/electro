@@ -8,7 +8,10 @@ import time
 import base64
 from streamlit_extras.app_logo import add_logo
 from util.today_df import get_today_df,get_pre_today_df
-
+st.set_page_config(
+        layout="wide",
+        page_icon="⚡",
+    )
 add_logo("picture\wind-turbine-2244222_640.jpg", height=175)
 with st.sidebar:
     st.title("👷🏿‍♂️煤球发电")  
