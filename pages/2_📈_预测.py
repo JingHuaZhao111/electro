@@ -4,9 +4,16 @@ import os
 from datetime import datetime, timedelta
 from util.predict_chart import predict_df,real_df
 import time
+from streamlit_extras.app_logo import add_logo
+from streamlit_lottie import st_lottie
 st.set_page_config(
         layout="wide",
+        page_icon="⚡",
     )
+add_logo("picture\wind-turbine-2244222_640.jpg", height=175)
+with st.sidebar:
+    # st.empty()
+    st.title("👷🏿‍♂️煤球发电")    
 file_options = [
     '1号风机',
     '2号风机',
@@ -21,6 +28,10 @@ file_options = [
 ]
 col1, col2 = st.columns([2,1])
 with col2:
+    from streamlit_extras.switch_page_button import switch_page
+    main_page = st.button("返回主页")
+    if main_page:
+        switch_page("主页")
     with st.expander("参数调整", expanded=True):
         # Initialize session state
         if 'current_date' not in st.session_state:

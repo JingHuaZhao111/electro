@@ -4,15 +4,25 @@ from util.statistics_and_rank import show_statistics
 from util.produce_power_statistics import yes,today
 from datetime import datetime
 from util.time_restart import next_update_time
-from streamlit_elements import elements, mui, html
-from streamlit_elements import dashboard
 import time
+from streamlit_extras.app_logo import add_logo
 from util.today_df import get_today_df,get_pre_today_df
 st.set_page_config(
         page_title='煤球发电',
         layout="wide",
+        page_icon="⚡",
     )
-    
+add_logo("picture\wind-turbine-2244222_640.jpg", height=175)
+with st.sidebar:
+    st.title("👷🏿‍♂️煤球发电")  
+    from markdownlit import mdlit
+    mdlit(
+        "@(🏆)(百度飞浆)(https://aistudio.baidu.com/aistudio/index)"
+    )  
+    mdlit(
+        "@(🏆)(软件杯)(https://www.cnsoftbei.com/)"
+    ) 
+
 file_options = [
     '1号风机',
     '2号风机',
@@ -25,8 +35,6 @@ file_options = [
     '9号风机',
     '10号风机',
 ]
-# 标题
-# st.markdown("<span style='color:lawngreen; font-size:28px;'>Welcome</span>", unsafe_allow_html=True)
 
 
 # 列
@@ -53,7 +61,9 @@ with col2:
     values2=get_pre_today_df(selected_file[0])
     values2=values2.rename(columns={'YD15':'PreYD15'})
     merge=pd.merge(values1,values2,on='DATATIME')
-    st.line_chart(merge,x="DATATIME")
+    from streamlit_extras.chart_container import chart_container
+    with chart_container(merge,tabs=("折线图 📈", "csv文件 📄", "导出 📁")):
+        st.line_chart(merge,x="DATATIME")
     
     
 col3,col4=st.columns(spec = 2, gap = "large")
@@ -61,6 +71,8 @@ with col3:
     df = yes()
     st.markdown('## 昨日各风机发电量')
     st.bar_chart(df.set_index('ID')[['昨日发电量']])
+    
+
 with col4:
     df=today()
     st.markdown('## 今日截至目前各风机发电量')
