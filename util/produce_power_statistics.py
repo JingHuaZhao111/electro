@@ -23,7 +23,7 @@ def yes_power(df):
 @st.cache_data
 def today_power(df):
     # 获取当前日期和时间
-    now = datetime.datetime.now()
+    now = datetime.datetime.now()+datetime.timedelta(hour=8)
     start_date = datetime.datetime(now.year, now.month, now.day)  # 今天的起始日期
     end_date = now  # 当前日期和时间
     # 将DATATIME列解析为日期时间类型

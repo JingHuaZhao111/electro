@@ -1,7 +1,8 @@
 import pandas as pd
 import datetime
+from datetime import timedelta
 def get_today_df(ID):
-    now = datetime.datetime.now()
+    now = datetime.datetime.now()+timedelta(hour=8)
     # 指定CSV文件路径
     csv_file = 'data/'+ID+'.csv'
     # 获取当前日期
@@ -16,7 +17,7 @@ def get_today_df(ID):
     yd15_values = filtered_df[['YD15', 'DATATIME']]
     return yd15_values
 def get_pre_today_df(ID):
-    now = datetime.datetime.now()
+    now = datetime.datetime.now()+timedelta(hour=8)
     # 指定CSV文件路径
     csv_file = 'pred/'+ID+'.csv'
     # 获取当前日期
