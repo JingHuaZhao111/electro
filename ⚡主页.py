@@ -47,7 +47,7 @@ with col1:
 with col2:
     # 获取当前时间
     current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    current_time=current_time+timedelta(hour=8)
+    current_time=current_time+timedelta(hours=8)
     next_update = next_update_time()
     st.markdown(
         '<div style="text-align: right;">当前时间：{}</div>'.format(current_time),
