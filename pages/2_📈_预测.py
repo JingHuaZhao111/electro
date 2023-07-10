@@ -42,9 +42,9 @@ with col2:
     with st.expander("参数调整", expanded=True):
         # Initialize session state
         if 'current_date' not in st.session_state:
-            st.session_state.current_date = datetime.now().date()- timedelta(days=30)+datetime.timedelta(hours=8)
+            st.session_state.current_date = datetime.now().date()- timedelta(days=30)
         if 'max_date' not in st.session_state:
-            st.session_state.max_date = datetime.now().date() + timedelta(days=1)+datetime.timedelta(hours=8)
+            st.session_state.max_date = datetime.now().date() + timedelta(days=1)
 
         # Get current date and calculate max date
         current_date = st.session_state.current_date

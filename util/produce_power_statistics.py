@@ -9,7 +9,7 @@ folder_path = 'data'
 
 def yes_power(df):
     # 获取昨天的日期
-    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)+datetime.timedelta(hours=8)
+    yesterday = datetime.datetime.now() - datetime.timedelta(days=1)
     yesterday_start = datetime.datetime(yesterday.year, yesterday.month, yesterday.day)
     yesterday_end = yesterday_start + pd.DateOffset(days=1)
     # 将DATATIME列解析为日期时间类型
@@ -23,7 +23,7 @@ def yes_power(df):
 @st.cache_data
 def today_power(df):
     # 获取当前日期和时间
-    now = datetime.datetime.now()+datetime.timedelta(hours=8)
+    now = datetime.datetime.now()
     start_date = datetime.datetime(now.year, now.month, now.day)  # 今天的起始日期
     end_date = now  # 当前日期和时间
     # 将DATATIME列解析为日期时间类型

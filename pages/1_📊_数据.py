@@ -5,6 +5,7 @@ import plotly.express as px
 import time
 from streamlit_extras.app_logo import add_logo
 from streamlit_extras.colored_header import colored_header
+import datetime
 st.set_page_config(
         layout="wide",
         page_icon="⚡",
@@ -46,7 +47,8 @@ if selected_file:
     file_name = selected_file.split('号')[0] + '.csv'
     file_name=os.path.join('data',file_name)
     df = pd.read_csv(file_name)  # 读取选定的Excel文件为DataFrame
-    
+    df['DATATIME'] = pd.to_datetime(df['DATATIME'])
+    df=df[df['DATATIME'] <= datetime.datetime.now()]
     with col2:
         selected=st.multiselect(
         "选择特征",
