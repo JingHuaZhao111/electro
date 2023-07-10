@@ -10,7 +10,7 @@ st.set_page_config(
         layout="wide",
         page_icon="⚡",
     )
-add_logo("picture\wind-turbine-2244222_640.jpg", height=175)
+add_logo("picture/wind-turbine-2244222_640.jpg", height=175)
 with st.sidebar:
     # st.empty()
     st.title("👷🏿‍♂️煤球发电")
