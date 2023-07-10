@@ -5,13 +5,10 @@ from util.produce_power_statistics import yes,today
 from datetime import datetime
 from util.time_restart import next_update_time
 import time
+import base64
 from streamlit_extras.app_logo import add_logo
 from util.today_df import get_today_df,get_pre_today_df
-st.set_page_config(
-        page_title='煤球发电',
-        layout="wide",
-        page_icon="⚡",
-    )
+
 add_logo("picture\wind-turbine-2244222_640.jpg", height=175)
 with st.sidebar:
     st.title("👷🏿‍♂️煤球发电")  
@@ -35,7 +32,6 @@ file_options = [
     '9号风机',
     '10号风机',
 ]
-
 
 # 列
 col1,col2=st.columns(spec = 2, gap = "large")

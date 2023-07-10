@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from util.predict_chart import predict_df,real_df
 import time
 from streamlit_extras.app_logo import add_logo
-from streamlit_lottie import st_lottie
+
 st.set_page_config(
         layout="wide",
         page_icon="⚡",
