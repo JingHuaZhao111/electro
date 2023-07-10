@@ -11,7 +11,14 @@ st.set_page_config(
     )
 add_logo("picture\wind-turbine-2244222_640.jpg", height=175)
 with st.sidebar:
-        st.title("👷🏿‍♂️煤球发电")    
+        st.title("👷🏿‍♂️煤球发电")  
+        from markdownlit import mdlit
+        mdlit(
+        "@(🏆)(百度飞浆)(https://aistudio.baidu.com/aistudio/index)"
+        )  
+        mdlit(
+            "@(🏆)(软件杯)(https://www.cnsoftbei.com/)"
+        )   
 file_options = [
     '1号风机',
     '2号风机',
