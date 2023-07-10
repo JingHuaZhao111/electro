@@ -12,6 +12,7 @@ from util.today_df import get_today_df,get_pre_today_df
 st.set_page_config(
         layout="wide",
         page_icon="⚡",
+        page_title="风力发电"
     )
 
 add_logo("picture/wind-turbine-2244222_640.jpg", height=175)
